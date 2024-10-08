@@ -5,6 +5,7 @@ import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import PageTransition from "@/components/PageTransition";
 import Header from "@/components/Header";
+import CartProvider from "@/context/CartContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,11 +35,12 @@ export default function RootLayout({
       >
         <NextTopLoader color="#000"/>
         <main className="container mx-auto max-w-2xl mt-4 space-y-4">
-          <Header />
-          <PageTransition>
-            {children}
-          </PageTransition>
-
+          <CartProvider>
+            <Header />
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </CartProvider>
         </main>
       </body>
     </html>

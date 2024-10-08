@@ -1,9 +1,11 @@
 "use client";
 
+import { cartContext } from "@/context/CartContext";
 import { cn } from "@/helpers/classnames";
 import { Navbar } from "flowbite-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
 
 const navLinks = [
     {
@@ -27,6 +29,8 @@ const navLinks = [
 const Header = () => {
 
     const pathname = usePathname();
+
+    const {totalQuantityProduct} = useContext(cartContext);
 
   return (
     <Navbar
@@ -58,6 +62,11 @@ const Header = () => {
                 >
                     <span className="relative">
                         {navLink.text}
+                        {navLink.text === "Cart" && (
+                            <div className="absolute inline-flex items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-5">
+                                {totalQuantityProduct}
+                            </div>
+                        )}
                     </span>
                 </Navbar.Link>
                 ))
